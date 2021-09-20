@@ -1,0 +1,36 @@
+server:  
+  port: ${PORT:0}
+  error:    
+    include-message: always
+
+#EUREKA CUSTOMER
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+#KAFKA
+custom:
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic-name: topic-monedero-transaction
+    topic-name-monedero-account: topic-monedero-account
+    group-id: group-id
+    
+#REDIS
+#DB MONGO
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379   
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: ms-monedero-account
+      repositories:
+        enabled: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration

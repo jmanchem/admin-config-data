@@ -1,0 +1,34 @@
+server:  
+  port: 10002
+  error:    
+    include-message: always
+
+#EUREKA CUSTOMER
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+#KAFKA
+custom:
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic-name-transaction: topic-bootcoin-transaction
+    
+    topic-name-bootcoin-account: topic-bootcoin-account
+    group-id: group-id
+
+
+#DB MONGO
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: ms-bootcoin-transaction
+      repositories:
+        enabled: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
